@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>任务提交系统 - 登录</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <style>
+        * {font-family:"微软雅黑",serif; }
+        html {overflow-x: hidden; overflow-y: hidden; }
+        body {background:url("img/login_bg.png"); margin:0; padding:0; }
+        #logo {margin-top:180px; text-align:center; margin-right:50px; }
+        input{outline:none; }
+
+        #login_area {text-align:center;
+            margin-top: auto;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: auto;
+            margin-top:70px; width:620px; }
+        .input {background:url("img/login_input_bg.png") no-repeat; width:237px; height:48px; float:left; margin-right:10px; }
+        .submit {background:url("img/login_submit.png") no-repeat; width:110px; height:48px; float:left; cursor:pointer; border:none; }
+        .winput {border:0; background:none; font-size:14px; margin-top:11px; height:26px; width:220px; margin-left:10px; color:white; }
+    </style>
+
+    <script language="javascript">
+        function byid(o) {
+            return document.getElementById(o);
+        }
+        function name_focus(o) {
+            if (o.value == "姓名") {
+                o.value = '';
+            }
+        }
+        function name_blur(o) {
+            if (o.value == "") {
+                o.value = '姓名';
+            }
+        }
+        function pass_focus(o) {
+            if (o.value == "密码") {
+                byid("pw_area").innerHTML = '<input name="password" id="password" type="password" class="winput" value="" onblur="pass_blur(this)">';
+                setTimeout('byid("password").focus();', 100);
+            }
+        }
+        function pass_blur(o) {
+            if (o.value == "") {
+                byid("pw_area").innerHTML = '<input name="password" id="password" class="winput" value="密码" onfocus="pass_focus(this)" onblur="pass_blur(this)">';
+            }
+        }
+        function check_login(f) {
+            if (f.username.value == "" || f.username.value == "姓名") {
+                alert("请输入您的登录姓名~      ");
+                f.username.focus();
+                return false;
+            }
+            if (f.password.value == "" || f.password.value == "密码") {
+                alert("请输入您的登录密码~      ");
+                f.password.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+
+<form id="login_form" action="" method="POST" onsubmit="return check_login(this)">
+
+    <div id="logo"><img src="img/list_logo.png"></div>
+
+
+    <div id="login_area">
+        <div class="input name" id="nm_area" title="姓名"><input name="username" id="username" class="winput" value="姓名" onfocus="name_focus(this)" onblur="name_blur(this)"></div>
+        <div class="input name" id="pw_area" title="密码"><input name="password" id="password" class="winput" value="密码" onfocus="pass_focus(this)" onblur="pass_blur(this)"></div>
+        <input type="submit" class="submit" value="">
+    </div>
+
+</form>
+
+
+</body>
+</html>
